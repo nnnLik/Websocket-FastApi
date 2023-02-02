@@ -5,11 +5,18 @@ const canvasCtx = canvasElement.getContext('2d');
 
 let socket = new WebSocket('ws://192.168.1.103:8000/signsense/video');
 
-
 socket.onopen = function () {
     console.log('Connected to WebSocket server.');
 }
 
+socket.onclose = function(event) {
+  if (event.wasClean) {
+    console.log('Соединение закрыто чисто');
+  } else {
+    console.log('Обрыв соединения'); // например, "убит" процесс сервера
+  }
+  console.log('Код: ' + event.code + ' причина: ' + event.reason);
+};
 socket.onerror = function (error) {
     console.log('WebSocket Error', error);
 };
@@ -20,9 +27,18 @@ socket.onmessage = function (e) {
     // Do whatever you need with data here
 }
 
-function onResults(results) {
-  socket.send(JSON.stringify({poseLandmarks:results.poseLandmarks, leftHandLandmarks:results.leftHandLandmarks, rightHandLandmarks:results.rightHandLandmarks}));
+window.onbeforeunload = function() {
+  console.log('sdfsfsdfsdf')
+  socket.close()
+}
 
+function onResults(results) {
+  socket.send(JSON.stringify(
+            {
+              poseLandmarks:results.poseLandmarks ? results.poseLandmarks : NaN, 
+              leftHandLandmarks:results.leftHandLandmarks ? results.leftHandLandmarks : NaN, 
+              rightHandLandmarks:results.rightHandLandmarks ? results.rightHandLandmarks : NaN
+            }));
   let allVisibleLandmarks = results.poseLandmarks?.map((el)=>el.visibility>0.0001?{...el, visibility:1}:el)
       .map((e,index)=>(index>10 && index<17) || (index>22)?e:{...e, visibility:0})
   canvasCtx.save();
