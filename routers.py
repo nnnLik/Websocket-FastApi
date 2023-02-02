@@ -47,6 +47,6 @@ async def video(websocket: WebSocket):
     #     break
 
 
-@router.get('/', response_class=HTMLResponse)
-async def video(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+# @router.get('/', response_class=HTMLResponse)
+# async def video(request: Request):
+#     return templates.TemplateResponse("index.html", {"request": request})
