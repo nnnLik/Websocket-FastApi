@@ -19,12 +19,13 @@ class ConnectionManager:
         await websocket.accept()
         self.active_connections.append(websocket)
 
-    def disconnect(self, websocket: WebSocket):
-        self.active_connections.remove(websocket)
+    async def disconnect(self, websocket: WebSocket):
+        await websocket.close(code=1000, reason=None)
 
-    async def send_answer(self, message: str):
-        for connection in self.active_connections:
-            await connection.send_json(message)
+    async def send_answer(self, message: str, websocket: WebSocket):
+        # for connection in self.active_connections:
+        #     await connection.send_json(message)
+        await websocket.send_json(message)
 
 
 manager = ConnectionManager()
