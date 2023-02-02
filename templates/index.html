@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./style.css">
+  <!-- <link rel="stylesheet" href="./style.css"> -->
   <link rel="icon" href="./icon.png">
   <title>5s Control</title>
 </head>
@@ -18,8 +18,28 @@
   <div class="container">
     <video class="input_video"></video>
     <canvas class="output_canvas" width="1280px" height="720px"></canvas>
-    <div id="button">sdfsdfsdfsdfdsfsfsfsfsfsf</div>
+    <!-- <div id="button">sdfsdfsdfsdfdsfsfsfsfsfsf</div> -->
   </div>
 </body>
 <script src="{{ url_for('static', path='/module.js') }}" crossorigin="anonymous"></script>
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+}
+
+.output_canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.input_video {
+  opacity: 0;
+}
+</style>
 </html>
