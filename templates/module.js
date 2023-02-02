@@ -3,6 +3,7 @@ const videoElement = document.getElementsByClassName('input_video')[0];
 const canvasElement = document.getElementsByClassName('output_canvas')[0];
 const canvasCtx = canvasElement.getContext('2d');
 
+document.getElementById('button').addEventListener('click', ()=>socket.close())
 let socket = new WebSocket('ws://192.168.1.103:8000/signsense/video');
 
 socket.onopen = function () {
@@ -27,10 +28,10 @@ socket.onmessage = function (e) {
     // Do whatever you need with data here
 }
 
-window.onbeforeunload = function() {
-  console.log('sdfsfsdfsdf')
-  socket.close()
-}
+// window.onbeforeunload = function() {
+//   websocket.onclose = function () {}; // disable onclose handler first
+//   websocket.close();
+// };
 
 function onResults(results) {
   socket.send(JSON.stringify(
