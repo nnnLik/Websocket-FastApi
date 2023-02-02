@@ -4,7 +4,8 @@ const canvasElement = document.getElementsByClassName('output_canvas')[0];
 const canvasCtx = canvasElement.getContext('2d');
 
 document.getElementById('button').addEventListener('click', ()=>socket.close())
-let socket = new WebSocket('ws://192.168.1.103:8000/signsense/video');
+let socket = new WebSocket('ws://0.0.0.0:8050/signsense/video');
+// let socket = new WebSocket('ws://142.93.106.43:8050/signsense/video');
 
 socket.onopen = function () {
     console.log('Connected to WebSocket server.');
