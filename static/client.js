@@ -1,4 +1,4 @@
-var connection = new WebSocket('ws://0.0.0.0:8000/signsense/video');
+var connection = new WebSocket('ws://192.168.1.118:8000/signsense/video');
 
 connection.onopen = function () {
     console.log('Connected to WebSocket server.');
