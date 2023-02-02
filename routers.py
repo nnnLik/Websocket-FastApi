@@ -20,10 +20,13 @@ router = APIRouter(
 async def video(websocket: WebSocket):
     await manager.connect(websocket)
     try:
-        while websocket.close:
+        while True:
             data = await websocket.receive()
-            print('frame received')
-            await manager.send_answer(f'data -> {data}')
+            if data['type'] != 'websocket.disconnect':
+                print(f'data received {data}')
+                await manager.send_answer(f'data -> {data}', websocket)
+            else:
+                await manager.disconnect(websocket)
     except WebSocketDisconnect:
         manager.disconnect(websocket)
         print('Disconnected')
