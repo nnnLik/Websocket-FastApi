@@ -3,8 +3,8 @@ FROM python:3.9
 RUN apt-get update &&\
 apt-get install -yq libavdevice-dev libavfilter-dev libopus-dev libvpx-dev pkg-config libsrtp2-dev -y
 WORKDIR /var/www/5scontrol
-COPY req.txt .
-RUN pip install -r req.txt
+COPY req-serv.txt .
+RUN pip install -r req-serv.txt
 RUN pip install "opencv-python-headless<4.3"
 
 COPY . .
