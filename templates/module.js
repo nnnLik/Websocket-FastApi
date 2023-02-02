@@ -20,7 +20,6 @@ socket.onmessage = function (e) {
     // Do whatever you need with data here
 }
 
-document.getElementById('button').addEventListener('click', ()=>socket.send('results'))
 function onResults(results) {
   socket.send(JSON.stringify({poseLandmarks:results.poseLandmarks, leftHandLandmarks:results.leftHandLandmarks, rightHandLandmarks:results.rightHandLandmarks}));
 
@@ -44,8 +43,6 @@ function onResults(results) {
                  {color: 'white', lineWidth: 4});
   drawLandmarks(canvasCtx, allVisibleLandmarks,
                 {color: 'orange', lineWidth: 2});
-  drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION,
-                 {color: '#0ee9e599', lineWidth: 1});
   drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS,
                  {color: 'white', lineWidth: 2});
   drawLandmarks(canvasCtx, results.leftHandLandmarks,
