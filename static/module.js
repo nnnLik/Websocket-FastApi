@@ -3,7 +3,7 @@ const videoElement = document.getElementsByClassName('input_video')[0];
 const canvasElement = document.getElementsByClassName('output_canvas')[0];
 const canvasCtx = canvasElement.getContext('2d');
 
-document.getElementById('button').addEventListener('click', ()=>socket.close())
+// document.getElementById('button').addEventListener('click', ()=>socket.close())
 // let socket = new WebSocket('ws://localhost:8050/signsense/video');
 let socket = new WebSocket('ws://5scontrol.pl/signsense/video');
 

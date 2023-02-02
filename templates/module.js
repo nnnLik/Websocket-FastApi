@@ -29,16 +29,16 @@ socket.onmessage = function (e) {
     // Do whatever you need with data here
 }
 
-window.onbeforeunload = function() {
-  websocket.onclose = function () {}; // disable onclose handler first
-  websocket.close();
-};
+// window.onbeforeunload = function() {
+//   websocket.onclose = function () {}; // disable onclose handler first
+//   websocket.close();
+// };
 
 function onResults(results) {
   socket.send(JSON.stringify(
             {
-              poseLandmarks:results.poseLandmarks ? results.poseLandmarks : NaN, 
-              leftHandLandmarks:results.leftHandLandmarks ? results.leftHandLandmarks : NaN, 
+              poseLandmarks:results.poseLandmarks ? results.poseLandmarks : NaN,
+              leftHandLandmarks:results.leftHandLandmarks ? results.leftHandLandmarks : NaN,
               rightHandLandmarks:results.rightHandLandmarks ? results.rightHandLandmarks : NaN
             }));
   let allVisibleLandmarks = results.poseLandmarks?.map((el)=>el.visibility>0.0001?{...el, visibility:1}:el)
@@ -70,14 +70,14 @@ function onResults(results) {
   drawLandmarks(canvasCtx, results.rightHandLandmarks,
                 {color: 'orange', radius: 3});
   canvasCtx.restore();
-  
+
 }
 
 const holistic = new Holistic({locateFile: (file) => {
   return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic/${file}`;
 }});
 holistic.setOptions({
-  selfieMode:true,
+  selfiMode:true,
   modelComplexity: 1,
   smoothLandmarks: true,
   enableSegmentation: false,
