@@ -15,9 +15,9 @@ ROOT = os.path.dirname(__file__)
 
 
 def start_server(host="0.0.0.0", port=8000, loop="asyncio", reload=False):
-    import uvicorn
+    import hypercorn
 
-    uvicorn.run("server:app", host=host, port=port,
+    hypercorn.run("server:app", host=host, port=port,
                 loop=loop, reload=reload, forwarded_allow_ips=['*'])
 
 
