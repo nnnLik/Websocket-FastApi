@@ -1,25 +1,28 @@
+import asyncio
 import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
 from routers import router
 
 from fastapi.staticfiles import StaticFiles
 
+from hypercorn.config import Config
+from hypercorn.asyncio import serve
+
+
 app = FastAPI(title='SignSense', docs_url=None, redoc_url=None, openapi_url=None)
 app.include_router(router)
 app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.add_middleware(HTTPSRedirectMiddleware)
 
 ROOT = os.path.dirname(__file__)
 
 
-def start_server(host="0.0.0.0", port=8000, loop="asyncio", reload=False):
-    import hypercorn
-
-    hypercorn.run("server:app", host=host, port=port,
-                loop=loop, reload=reload, forwarded_allow_ips=['*'])
-
+async def main(app, config):
+    await serve(app, config)
 
 if __name__ == "__main__":
 
@@ -32,4 +35,12 @@ if __name__ == "__main__":
         allow_headers=["*"],
     )
 
-    start_server(reload=False)
+    config = Config()
+    config.bind = ['0.0.0.0:8050']
+
+    config.worker_class = 'asyncio'
+    config.workers = 9
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main(app, config))
+
+
