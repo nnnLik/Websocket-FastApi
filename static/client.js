@@ -2,7 +2,7 @@ var connection = new WebSocket('ws://192.168.1.118:8000/signsense/video');
 
 connection.onopen = function () {
     console.log('Connected to WebSocket server.');
-    connection.send('Hello from JavaScript!');
+    connection.send('asdasdasd');
 };
 
 connection.onerror = function (error) {

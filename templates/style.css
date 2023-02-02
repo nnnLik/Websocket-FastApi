@@ -1,0 +1,266 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.output_canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.input_video {
+  opacity: 0;
+}
+
+.ic {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 20vh;
+  height: 20vh;
+}
+
+.box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 20px;
+  width: 60px;
+  height: 60px;
+  background: url("./icon.png");
+  background-color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-shadow: 0 0 0 #cccccc, 0 0 0 #ffffff, 5px 5px 5px #cccccc inset, -5px -5px 5px #ffffff inset;
+  -webkit-animation: anime 12s cubic-bezier(0.16, 1, 0.3, 1) 5s infinite alternate;
+          animation: anime 12s cubic-bezier(0.16, 1, 0.3, 1) 5s infinite alternate;
+}
+
+@-webkit-keyframes anime {
+  0% {
+    width: 60px;
+    height: 60px;
+    background: url("./icon.png");
+    background-color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    box-shadow: 0 0 0 #cccccc, 0 0 0 #ffffff, 5px 5px 5px #cccccc inset, -5px -5px 5px #ffffff inset;
+  }
+  5% {
+    width: 60px;
+    height: 60px;
+    background: url("./icon.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    box-shadow: 5px 5px 5px #cccccc, 5px 5px 5px #ffffff, 0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
+  }
+  10% {
+    width: 60px;
+    height: 180px;
+    background: url("./icon.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    box-shadow: 5px 5px 5px #cccccc, 5px 5px 5px #ffffff, 0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
+  }
+  18% {
+    width: 180px;
+    height: 180px;
+    background: url("./nqr.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    box-shadow: 10px 10px 10px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset, 2px 2px 2px #ffffff inset;
+  }
+  100% {
+    width: 180px;
+    height: 180px;
+    background: url("./nqr.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    box-shadow: 10px 10px 10px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset, 2px 2px 2px #ffffff inset;
+  }
+}
+
+@keyframes anime {
+  0% {
+    width: 60px;
+    height: 60px;
+    background: url("./icon.png");
+    background-color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    box-shadow: 0 0 0 #cccccc, 0 0 0 #ffffff, 5px 5px 5px #cccccc inset, -5px -5px 5px #ffffff inset;
+  }
+  5% {
+    width: 60px;
+    height: 60px;
+    background: url("./icon.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    box-shadow: 5px 5px 5px #cccccc, 5px 5px 5px #ffffff, 0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
+  }
+  10% {
+    width: 60px;
+    height: 180px;
+    background: url("./icon.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    box-shadow: 5px 5px 5px #cccccc, 5px 5px 5px #ffffff, 0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
+  }
+  18% {
+    width: 180px;
+    height: 180px;
+    background: url("./nqr.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    box-shadow: 10px 10px 10px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset, 2px 2px 2px #ffffff inset;
+  }
+  100% {
+    width: 180px;
+    height: 180px;
+    background: url("./nqr.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    box-shadow: 10px 10px 10px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset, 2px 2px 2px #ffffff inset;
+  }
+}
+.wrap {
+  position: absolute;
+  right: 70px;
+  top: 70px;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+}
+
+.cube {
+  margin: auto;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  transform-style: preserve-3d;
+}
+
+.cube > div {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  opacity: 0.9;
+  background-color: #000;
+  border: solid 1px #eeeeee;
+  color: #ffffff;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.cube > div img {
+  width: 80%;
+  height: 80%;
+}
+
+.front {
+  transform: translateZ(50px);
+}
+
+.back {
+  transform: translateZ(-100px) rotateY(180deg);
+}
+
+.right {
+  transform: rotateY(-270deg) translateX(100px);
+  transform-origin: top right;
+}
+
+.left {
+  transform: rotateY(270deg) translateX(-100px);
+  transform-origin: center left;
+}
+
+.top {
+  transform: rotateX(-270deg) translateY(-100px);
+  transform-origin: top center;
+}
+
+.bottom {
+  transform: rotateX(270deg) translateY(100px);
+  transform-origin: bottom center;
+}
+
+@-webkit-keyframes rotate {
+  from {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+.cube {
+  -webkit-animation: rotate 20s infinite linear;
+          animation: rotate 20s infinite linear;
+}
+
+.wrap:hover .front {
+  transform: translateZ(200px);
+}
+
+.wrap:hover .back {
+  transform: translateZ(-200px) rotateY(180deg);
+}
+
+.wrap:hover .right {
+  transform: rotateY(-270deg) translateZ(100px) translateX(100px);
+}
+
+.wrap:hover .left {
+  transform: rotateY(270deg) translateZ(100px) translateX(-100px);
+}
+
+.wrap:hover .top {
+  transform: rotateX(-270deg) translateZ(100px) translateY(-100px);
+}
+
+.wrap:hover .bottom {
+  transform: rotateX(270deg) translateZ(100px) translateY(100px);
+}
+
+.cube > div {
+  transition: transform 0.2s ease-in;
+}
+
+#button {
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+}/*# sourceMappingURL=style.css.map */
