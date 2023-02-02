@@ -1,24 +1,18 @@
-import asyncio
 import os
 from multiprocessing import freeze_support, cpu_count
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
 from routers import router
 
 from fastapi.staticfiles import StaticFiles
-
-from hypercorn.config import Config
-from hypercorn.asyncio import serve
 
 import uvicorn
 
 app = FastAPI(title='SignSense', docs_url=None, redoc_url=None, openapi_url=None)
 app.include_router(router)
 app.mount("/static", StaticFiles(directory="static"), name="static")
-# app.add_middleware(HTTPSRedirectMiddleware)
 
 ROOT = os.path.dirname(__file__)
 
